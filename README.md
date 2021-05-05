@@ -9,3 +9,9 @@
 6. If you have pushed the changes to github you can now create a Pull request. Go to pull requests and click New Pull Request. You will see the master branch on the left side (thats the branch we will merge in to) and on the right side you have to pick your branch. 
 7. In the message you can write closes #issueNumber (replace issuenumber with your issue number) which will automatically close the issue you picked whenever the pull request has been merged. Then we are all set and you can click on Create Pull Request. 
 8. Now you can ask people to review it since we always want at least 2 people to view the pull request before merging it. Be ready to recieve some feedback! It will help you improve and learn new things.
+
+### Parsing information
+The following resources might be very useful if you want to experiment with the parser
+* [Sprache](https://github.com/sprache/Sprache) 
+* https://nblumhardt.com/2010/01/building-an-external-dsl-in-c/
+* https://justinpealing.me.uk/post/2020-03-11-sprache1-chars/
