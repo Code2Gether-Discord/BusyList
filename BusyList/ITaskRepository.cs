@@ -12,21 +12,21 @@ namespace BusyList
         /// Get a task from the repository that matches the id parameter. 
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>Taks from the repository.</returns>
+        /// <returns>The first task that matches the id parameter.</returns>
         TaskItem GetTaskById(int id);
 
         /// <summary>
-        /// It add a new task to the repository.
+        /// Add a new task to the repository.
         /// </summary>
-        /// <param name="data"></param>
-        /// <returns>Input from user to make a new task that get to the repository.</returns>
+        /// <param name="data">Input data for the new task.</param>
+        /// <returns>The newly created task in the repository.</returns>
         TaskItem AddTask(AddTaskData data);
 
         /// <summary>
-        /// It delete the task out of the repository.
+        /// Marks the task as deleted in the repository.
         /// </summary>
         /// <param name="task"></param>
-        /// <returns>Message that it is delete out of the repository.</returns>
+        /// <returns>The updated task.</returns>
         TaskItem DeleteTask(TaskItem task);
 
         /// <summary>
@@ -36,10 +36,10 @@ namespace BusyList
         IEnumerable<TaskItem> GetAll();
 
         /// <summary>
-        /// It update an existing task what is in the repository.
+        /// Update an existing task in the repository.
         /// </summary>
         /// <param name="task"></param>
-        /// <returns>It shows the update its version from the repository.</returns>
+        /// <returns>The updated task.</returns>
         TaskItem UpdateTask(TaskItem task);
     }
 }
