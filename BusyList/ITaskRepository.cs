@@ -2,9 +2,16 @@
 
 namespace BusyList
 {
+    public enum TaskStatus
+    {
+        Done,
+        InProcess,
+        NotStarted
+    }
+
     public record AddTaskData(string Description);
 
-    public record TaskItem(int Id, string Description);
+    public record TaskItem(int Id, string Description, TaskStatus TaskStatus = TaskStatus.NotStarted);
 
     public interface ITaskRepository
     {
