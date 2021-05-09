@@ -5,7 +5,7 @@ namespace BusyList
     public enum TaskStatus
     {
         NotStarted,
-        InPogress,
+        InProgress,
         Done
     }
 
