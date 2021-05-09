@@ -20,7 +20,7 @@ namespace BusyList.Handlers
             AddTaskData item = new AddTaskData(command.Description);
             _taskRepository.AddTask(item);
 
-            Console.WriteLine($"Added task with description:{item.Description}");
+            Console.WriteLine($"Added task with description:{item.Description}.");
         }
     }
 }
