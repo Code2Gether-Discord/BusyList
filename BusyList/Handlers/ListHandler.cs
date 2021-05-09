@@ -19,6 +19,8 @@ namespace BusyList.Handlers
 
             string seperator = new String('-', 10);
 
+            Console.WriteLine("Tasks:\n");
+
             foreach (var item in tasks)
             {
                 Console.WriteLine(seperator);
