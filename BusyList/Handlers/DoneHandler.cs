@@ -5,20 +5,20 @@ namespace BusyList.Handlers
 {
     public class DoneHandler : IHandler<DoneCommand>
     {
-        private readonly ITaskRepository _TaskRepository;
+        private readonly ITaskRepository _taskRepository;
 
         public DoneHandler(ITaskRepository taskRepository)
         {
-            _TaskRepository = taskRepository;
+            _taskRepository = taskRepository;
         }
 
         public void Run(DoneCommand command)
         {
-            TaskItem oldTaskItem = _TaskRepository.GetTaskById(command.Id);
+            TaskItem oldTaskItem = _taskRepository.GetTaskById(command.Id);
 
             TaskItem updatedTaskItem = oldTaskItem with { TaskStatus = TaskStatus.Done };
 
-            _TaskRepository.UpdateTask(updatedTaskItem);
+            _taskRepository.UpdateTask(updatedTaskItem);
 
             Console.WriteLine($"The Task with the id {command.Id} is marked as done now.");
         }

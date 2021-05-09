@@ -4,9 +4,9 @@ namespace BusyList
 {
     public enum TaskStatus
     {
-        Done,
-        InProcess,
-        NotStarted
+        NotStarted,
+        InPogress,
+        Done
     }
 
     public record AddTaskData(string Description);
