@@ -5,7 +5,7 @@ namespace BusyList.Handlers
 {
     internal class DeleteHandler : IHandler<DeleteCommand>
     {
-        private ITaskRepository _taskRepository { get; }
+        private readonly ITaskRepository _taskRepository;
 
         public DeleteHandler(ITaskRepository taskRepository)
         {
@@ -16,7 +16,7 @@ namespace BusyList.Handlers
         {
             var selectedTask = _taskRepository.GetTaskById(command.Id);
             _taskRepository.DeleteTask(selectedTask);
-            Console.WriteLine($"Task with id {command.Id} has been deleted");
+            Console.WriteLine($"Task with id {command.Id} has been deleted.");
         }
     }
 }
