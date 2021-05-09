@@ -9,7 +9,7 @@ namespace BusyList
     public interface ITaskRepository
     {
         /// <summary>
-        /// Get a task from the repository that matches the id parameter. 
+        /// Get a task from the repository that matches the id parameter.
         /// </summary>
         /// <param name="id"></param>
         /// <returns>The first task that matches the id parameter.</returns>

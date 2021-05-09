@@ -9,7 +9,7 @@ namespace BusyList
 {
     public static class Program
     {
-        const string PROMPT = "> ";
+        private const string PROMPT = "> ";
 
         private static void Main()
         {
@@ -30,27 +30,25 @@ namespace BusyList
                 Console.Write(PROMPT);
                 line = Console.ReadLine();
 
-                if (!string.IsNullOrWhiteSpace(line))
+                if (string.IsNullOrWhiteSpace(line)) continue;
+                try
                 {
-                    try
-                    {
-                        var result = parser.Parse(line);
+                    var result = parser.Parse(line);
 
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine(result);
-
-                        Console.ResetColor();
-                        HandleCommand(provider, result);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine(ex.Message);
-                    }
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine(result);
 
                     Console.ResetColor();
-                    Console.WriteLine();
+                    HandleCommand(provider, result);
                 }
+                catch (Exception ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(ex.Message);
+                }
+
+                Console.ResetColor();
+                Console.WriteLine();
             }
             while (line != null);
         }
@@ -73,12 +71,15 @@ namespace BusyList
                 case ReadCommand read:
                     provider.GetRequiredService<IHandler<ReadCommand>>().Run(read);
                     break;
+
                 case DeleteCommand delete:
                     provider.GetRequiredService<IHandler<DeleteCommand>>().Run(delete);
                     break;
+
                 case NextCommand next:
                     provider.GetRequiredService<IHandler<NextCommand>>().Run(next);
                     break;
+
                 default:
                     throw new Exception($"Unknown command type {command.GetType().FullName} sent to HandleCommand!");
             }
