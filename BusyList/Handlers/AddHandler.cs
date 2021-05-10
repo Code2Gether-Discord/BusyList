@@ -1,15 +1,12 @@
 ﻿using BusyList.Commands;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BusyList.Handlers
 {
     public class AddHandler : IHandler<AddCommand>
     {
-        private ITaskRepository _taskRepository;
+        private readonly ITaskRepository _taskRepository;
 
         public AddHandler(ITaskRepository taskRepository)
         {
@@ -17,10 +14,11 @@ namespace BusyList.Handlers
         }
         public void Run(AddCommand command)
         {
-            AddTaskData item = new AddTaskData(command.Description);
-            _taskRepository.AddTask(item);
+            var item = new AddTaskData(command.Description);
 
-            Console.WriteLine($"Added task with description:{item.Description}.");
+            var currentTask = _taskRepository.AddTask(item);
+
+            Console.WriteLine($"Added task{currentTask}.");
         }
     }
 }
