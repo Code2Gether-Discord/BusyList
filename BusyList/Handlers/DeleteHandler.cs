@@ -3,7 +3,7 @@ using System;
 
 namespace BusyList.Handlers
 {
-    internal class DeleteHandler : IHandler<DeleteCommand>
+    public class DeleteHandler : IHandler<DeleteCommand>
     {
         private readonly ITaskRepository _taskRepository;
 
