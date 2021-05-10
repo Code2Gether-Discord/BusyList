@@ -8,6 +8,8 @@ namespace BusyList.Handlers
     {
         private readonly ITaskRepository _taskRepository;
 
+        private const string SEPERATOR = "--------------------------";
+
         public ListHandler(ITaskRepository taskRepository)
         {
             _taskRepository = taskRepository;
@@ -15,19 +17,17 @@ namespace BusyList.Handlers
 
         public void Run(DoneCommand command)
         {
-            IEnumerable<TaskItem> tasks = _taskRepository.GetAll();
-
-            string seperator = new String('-', 10);
+            var tasks = _taskRepository.GetAll();
 
             Console.WriteLine("Tasks:");
+            Console.WriteLine(SEPERATOR);
 
             foreach (var item in tasks)
             {
-                Console.WriteLine(seperator);
                 Console.WriteLine($"Task id: {item.Id}");
                 Console.WriteLine($"Description: {item.Description}");
                 Console.WriteLine($"Status: {item.TaskStatus}");
-                Console.WriteLine(seperator);
+                Console.WriteLine(SEPERATOR);
             }
         }
     }
