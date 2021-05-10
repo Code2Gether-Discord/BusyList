@@ -4,7 +4,16 @@ namespace BusyList
 {
     public record AddTaskData(string Description);
 
-    public record TaskItem(int Id, string Description);
+    public record TaskItem(int Id, string Description)
+    {
+        public string Print()
+        {
+            string changedString = $"Added task #{Id} with description: {Description}";
+
+            return changedString;
+        }
+    }
+
 
     public interface ITaskRepository
     {

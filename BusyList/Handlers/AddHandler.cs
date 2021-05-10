@@ -18,13 +18,8 @@ namespace BusyList.Handlers
 
             var currentTask = _taskRepository.AddTask(item);
 
-            Print(currentTask);
+            Console.WriteLine(currentTask.Print());
         }
-        private void Print(TaskItem item)
-        {
-            string changedString = $"Added task #{item.Id} with description: {item.Description}";
 
-            Console.WriteLine(changedString);
-        }
     }
 }
