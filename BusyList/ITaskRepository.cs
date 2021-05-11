@@ -8,9 +8,7 @@ namespace BusyList
     {
         public string Print()
         {
-            string changedString = $"#{Id} with description: {Description}";
-
-            return changedString;
+            return $"#{Id} with description: {Description}";
         }
     }
 

@@ -79,6 +79,9 @@ namespace BusyList
                 case NextCommand next:
                     provider.GetRequiredService<IHandler<NextCommand>>().Run(next);
                     break;
+                case AddCommand add:
+                    provider.GetRequiredService<IHandler<AddCommand>>().Run(add);
+                    break;
                 default:
                     throw new Exception($"Unknown command type {command.GetType().FullName} sent to HandleCommand!");
             }
