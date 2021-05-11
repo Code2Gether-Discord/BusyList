@@ -3,7 +3,7 @@ using System;
 
 namespace BusyList.Handlers
 {
-    internal class NextHandler : IHandler<NextCommand>
+    public class NextHandler : IHandler<NextCommand>
     {
         private readonly ITaskRepository _taskRepository;
 
