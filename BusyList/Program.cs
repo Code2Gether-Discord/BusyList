@@ -30,27 +30,28 @@ namespace BusyList
                 Console.Write(PROMPT);
                 line = Console.ReadLine();
 
-                if (string.IsNullOrWhiteSpace(line)) continue;
-                try
+                if (!string.IsNullOrWhiteSpace(line))
                 {
-                    var result = parser.Parse(line);
+                    try
+                    {
+                        var result = parser.Parse(line);
 
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine(result);
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine(result);
+
+                        Console.ResetColor();
+                        HandleCommand(provider, result);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(ex.Message);
+                    }
 
                     Console.ResetColor();
-                    HandleCommand(provider, result);
+                    Console.WriteLine();
                 }
-                catch (Exception ex)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(ex.Message);
-                }
-
-                Console.ResetColor();
-                Console.WriteLine();
-            }
-            while (line != null);
+            } while (line != null);
         }
 
         private static IServiceCollection ConfigureServices()
