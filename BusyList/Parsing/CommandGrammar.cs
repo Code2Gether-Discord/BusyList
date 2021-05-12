@@ -1,4 +1,4 @@
-﻿using BusyList.Commands;
+using BusyList.Commands;
 using Sprache;
 using System.Linq;
 
