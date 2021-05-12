@@ -9,9 +9,5 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Sprache" Version="2.3.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Handlers\" />
-  </ItemGroup>
   
 </Project>

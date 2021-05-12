@@ -14,8 +14,8 @@ namespace BusyList.Handlers
 
         public void Run(ReadCommand command)
         {
-            var readTask = _taskRepository.GetTaskById(command.Id);
-            Console.WriteLine($"If the ReadHandler was implemented, I would now list details for Task {readTask}.");
+            var task = _taskRepository.GetTaskById(command.Id);
+            Console.WriteLine($"read the task {task.Print()}");
         }
     }
 }
