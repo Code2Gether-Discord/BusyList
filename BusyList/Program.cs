@@ -57,6 +57,7 @@ namespace BusyList
         {
             var services = new ServiceCollection();
 
+            services.AddTransient<IHandler<AddCommand>, AddHandler>();
             services.AddTransient<IHandler<ReadCommand>, ReadHandler>();
             services.AddTransient<IHandler<DeleteCommand>, DeleteHandler>();
             services.AddTransient<IHandler<NextCommand>, NextHandler>();
@@ -79,7 +80,6 @@ namespace BusyList
                 case NextCommand next:
                     provider.GetRequiredService<IHandler<NextCommand>>().Run(next);
                     break;
-
                 default:
                     throw new Exception($"Unknown command type {command.GetType().FullName} sent to HandleCommand!");
             }
