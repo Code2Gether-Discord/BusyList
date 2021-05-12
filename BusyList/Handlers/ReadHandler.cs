@@ -16,9 +16,7 @@ namespace BusyList.Handlers
         {
             var task = _taskRepository.GetTaskById(command.Id);
 
-            // should add a nullcheck here
-
-            Console.WriteLine(task.Print());
+            Console.WriteLine(task != null ? task.Print() : "Task does not exist");
         }
     }
 }
