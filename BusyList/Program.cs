@@ -1,4 +1,4 @@
-﻿using BusyList.Commands;
+using BusyList.Commands;
 using BusyList.Handlers;
 using BusyList.Parsing;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +9,7 @@ namespace BusyList
 {
     public static class Program
     {
-        private const string PROMPT = "> ";
+        const string PROMPT = "> ";
 
         private static void Main()
         {
@@ -74,19 +74,15 @@ namespace BusyList
                 case ReadCommand read:
                     provider.GetRequiredService<IHandler<ReadCommand>>().Run(read);
                     break;
-
                 case DeleteCommand delete:
                     provider.GetRequiredService<IHandler<DeleteCommand>>().Run(delete);
                     break;
-
                 case NextCommand next:
                     provider.GetRequiredService<IHandler<NextCommand>>().Run(next);
                     break;
-
                 case AddCommand add:
                     provider.GetRequiredService<IHandler<AddCommand>>().Run(add);
                     break;
-
                 case DoneCommand done:
                     provider.GetRequiredService<IHandler<DoneCommand>>().Run(done);
                     break;
