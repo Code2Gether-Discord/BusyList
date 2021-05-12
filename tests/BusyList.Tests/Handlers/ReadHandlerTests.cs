@@ -19,6 +19,7 @@ namespace BusyList.Tests.Handlers
         public void Run_ShouldSetTaskStatusToDone_WhenAValidIdIsPassed()
         {
             var command = new ReadCommand(1);
+
             var task = new TaskItem(command.Id, "Test Description");
 
             _mockRepository.Setup(_ => _.GetTaskById(command.Id)).Returns(task);
