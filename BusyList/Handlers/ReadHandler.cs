@@ -3,11 +3,22 @@ using System;
 
 namespace BusyList.Handlers
 {
-    internal class ReadHandler : IHandler<ReadCommand>
+    public class ReadHandler : IHandler<ReadCommand>
     {
+        private readonly ITaskRepository _taskRepository;
+
+        public ReadHandler(ITaskRepository taskRepository)
+        {
+            _taskRepository = taskRepository;
+        }
+
         public void Run(ReadCommand command)
         {
-            Console.WriteLine($"If the ReadHandler was implemented, I would now list details for Task {command.Id}.");
+            var task = _taskRepository.GetTaskById(command.Id);
+
+            // should add a nullcheck here
+
+            Console.WriteLine(task.Print());
         }
     }
 }
