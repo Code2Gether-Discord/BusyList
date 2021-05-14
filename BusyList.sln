@@ -7,10 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusyList", "BusyList\BusyLi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A8AA6059-865A-4B43-BF6D-61712AA6E62A}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusyList.Tests", "tests\BusyList.Tests\BusyList.Tests.csproj", "{BA769810-CCBC-4C64-ACE7-D1A5F9CB4970}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusyList.Tests", "tests\BusyList.Tests\BusyList.Tests.csproj", "{BA769810-CCBC-4C64-ACE7-D1A5F9CB4970}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
