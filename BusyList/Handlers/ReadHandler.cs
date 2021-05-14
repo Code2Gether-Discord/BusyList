@@ -22,7 +22,7 @@ namespace BusyList.Handlers
             }
             else
             {
-                Console.WriteLine($"The following task has been found: {task.Id}");
+                Console.WriteLine($"The following task has been found: {task.Id}: {task.Description}");
             }
         }
     }
