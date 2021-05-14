@@ -20,6 +20,10 @@ namespace BusyList.Handlers
             {
                 Console.WriteLine($"No task found with id {command.Id}");
             }
+            else
+            {
+                Console.WriteLine($"The following task has been found: {task.Id}");
+            }
         }
     }
 }
