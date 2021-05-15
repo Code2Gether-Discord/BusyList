@@ -14,11 +14,11 @@ namespace BusyList.Handlers
 
         public void Run(DoneCommand command)
         {
-            TaskItem oldTaskItem = _taskRepository.GetTaskById(command.Id);
+            TaskItem taskItem = _taskRepository.GetTaskById(command.Id);
 
-            TaskItem updatedTaskItem = oldTaskItem with { TaskStatus = TaskStatus.Done };
+            taskItem.TaskStatus = TaskStatus.Done;
 
-            _taskRepository.UpdateTask(updatedTaskItem);
+            _taskRepository.UpdateTask(taskItem);
 
             Console.WriteLine($"The Task with the id {command.Id} is marked as done now.");
         }
