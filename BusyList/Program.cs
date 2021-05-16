@@ -60,6 +60,8 @@ namespace BusyList
             var services = new ServiceCollection();
 
             services.AddSingleton<ITaskRepository, TaskRepository>();
+            services.AddSingleton<IFileService, JsonFileService>();
+
             services.AddTransient<IHandler<AddCommand>, AddHandler>();
             services.AddTransient<IHandler<ReadCommand>, ReadHandler>();
             services.AddTransient<IHandler<DeleteCommand>, DeleteHandler>();

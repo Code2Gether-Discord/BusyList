@@ -11,7 +11,6 @@ namespace BusyList
 
     public record AddTaskData(string Description);
 
-
     public interface ITaskRepository
     {
         /// <summary>

@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace BusyList
@@ -10,21 +8,24 @@ namespace BusyList
     {
         private const string PATH = "database.json";
 
-        private readonly List<TaskItem> _items = new List<TaskItem>();
+        private readonly IFileService _fileProvider;
 
+        private readonly List<TaskItem> _items = new();
         private int _idCounter = 1;
 
-        public TaskRepository()
+        public TaskRepository(IFileService fileProvider)
         {
-            if (File.Exists(PATH))
+            _fileProvider = fileProvider;
+
+            var storedItems = _fileProvider.DeserializeOrDefault<List<TaskItem>>(PATH);
+
+            if (storedItems != null)
             {
-                var text = File.ReadAllText(PATH);
-
-                _items = JsonConvert.DeserializeObject<List<TaskItem>>(text);
-
+                _items = storedItems;
                 _idCounter = _items.Max(task => task.Id) + 1;
             }
         }
+
         public TaskItem AddTask(AddTaskData data)
         {
             var item = new TaskItem(_idCounter++, data.Description);
@@ -71,11 +72,10 @@ namespace BusyList
 
             return task;
         }
+
         private void Save()
         {
-            var text = JsonConvert.SerializeObject(_items);
-
-            File.WriteAllText(PATH, text);
+            _fileProvider.SerializeToFile(PATH, _items);
         }
     }
 }
