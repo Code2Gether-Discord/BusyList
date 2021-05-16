@@ -63,6 +63,7 @@ namespace BusyList
             services.AddTransient<IHandler<AddCommand>, AddHandler>();
             services.AddTransient<IHandler<ReadCommand>, ReadHandler>();
             services.AddTransient<IHandler<DeleteCommand>, DeleteHandler>();
+            services.AddTransient<IHandler<DoneCommand>, DoneHandler>();
             services.AddTransient<IHandler<NextCommand>, NextHandler>();
 
             return services;

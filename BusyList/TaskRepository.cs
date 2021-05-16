@@ -52,11 +52,20 @@ namespace BusyList
 
         public TaskItem GetTaskById(int id)
         {
-            return _items.FirstOrDefault(x => x.Id == id);
+            return _items.SingleOrDefault(x => x.Id == id);
         }
 
         public TaskItem UpdateTask(TaskItem task)
         {
+            var oldTask = GetTaskById(task.Id);
+
+            if (oldTask == null)
+            {
+                throw new Exception("Trying to update non-existing task.");
+            }
+
+            _items.Remove(oldTask);
+            _items.Add(task);
 
             Save();
 

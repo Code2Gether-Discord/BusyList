@@ -16,9 +16,9 @@ namespace BusyList.Handlers
         {
             TaskItem taskItem = _taskRepository.GetTaskById(command.Id);
 
-            taskItem.TaskStatus = TaskStatus.Done;
+            var newItem = taskItem with { TaskStatus = TaskStatus.Done };
 
-            _taskRepository.UpdateTask(taskItem);
+            _taskRepository.UpdateTask(newItem);
 
             Console.WriteLine($"The Task with the id {command.Id} is marked as done now.");
         }
