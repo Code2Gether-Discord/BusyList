@@ -16,14 +16,8 @@ namespace BusyList.Handlers
         {
             var task = _taskRepository.GetTaskById(command.Id);
 
-            if (task == null)
-            {
-                Console.WriteLine($"No task found with id {command.Id}");
-            }
-            else
-            {
-                Console.WriteLine($"The following task has been found: {task.Id}: {task.Description}");
-            }
+            if (task == null) return;
+            Console.WriteLine(task.Print());
         }
     }
 }
