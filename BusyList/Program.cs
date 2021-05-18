@@ -55,7 +55,7 @@ namespace BusyList
             while (line != null);
         }
 
-        private static IServiceCollection ConfigureServices()
+        public static IServiceCollection ConfigureServices()
         {
             var services = new ServiceCollection();
 

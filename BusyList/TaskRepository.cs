@@ -39,9 +39,10 @@ namespace BusyList
 
         public void DeleteTask(TaskItem task)
         {
-            Console.WriteLine($"Removed task #{task.Id}");
-
-            _items.Remove(task);
+            if (!_items.Remove(task))
+            {
+                throw new ArgumentException("Unable to delete that task, not tracked in TaskRepository.", nameof(task));
+            }
 
             Save();
         }

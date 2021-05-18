@@ -144,5 +144,24 @@ namespace BusyList.Tests
 
             var actual = subject.Invoking(_ => _.UpdateTask(newTask)).Should().Throw<Exception>();
         }
+
+        [Fact]
+        public void GetAll_ShouldReturnAllKnownTasks()
+        {
+            var list = new List<TaskItem>()
+            {
+                new TaskItem(1, "Test1"),
+                new TaskItem(2, "Test2"),
+            };
+
+            _fileService.Setup(_ => _.DeserializeOrDefault<List<TaskItem>>(It.IsAny<string>()))
+                .Returns(list);
+
+            var subject = new TaskRepository(_fileService.Object);
+
+            var actual = subject.GetAll();
+
+            actual.Should().BeEquivalentTo(list);
+        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using BusyList.Commands;
 using BusyList.Handlers;
 using Moq;
-using System.Collections.Generic;
 using Xunit;
 
 namespace BusyList.Tests.Handlers
@@ -16,12 +15,16 @@ namespace BusyList.Tests.Handlers
             _nextHandler = new NextHandler(_taskRepository.Object);
         }
 
-        // Should improve the test later
-        // For now we only the test that the method dont throw exceptions
         [Fact]
-        public void Run_ShouldDontThrowExceptions()
+        public void Run_ShouldNotThrowExceptions()
         {
             var command = new NextCommand();
+
+            var tasks = new[] {
+                new TaskItem(1, "desc")
+            };
+
+            _taskRepository.Setup(_ => _.GetAll()).Returns(tasks);
 
             _nextHandler.Run(command);
 

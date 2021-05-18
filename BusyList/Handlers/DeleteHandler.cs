@@ -11,7 +11,7 @@ namespace BusyList.Handlers
         {
             _taskRepository = taskRepository;
         }
-        
+
         public void Run(DeleteCommand command)
         {
             var selectedTask = _taskRepository.GetTaskById(command.Id);
