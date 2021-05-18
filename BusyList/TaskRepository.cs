@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -38,8 +37,6 @@ namespace BusyList
 
         public void DeleteTask(TaskItem task)
         {
-            Console.WriteLine($"Removed task #{task.Id}");
-
             _items.Remove(task);
 
             Save();
@@ -52,7 +49,7 @@ namespace BusyList
 
         public TaskItem GetTaskById(int id)
         {
-            return _items.FirstOrDefault(x => x.Id == id);
+            return _items.SingleOrDefault(x => x.Id == id);
         }
 
         public TaskItem UpdateTask(TaskItem task)
