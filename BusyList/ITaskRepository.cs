@@ -11,13 +11,6 @@ namespace BusyList
 
     public record AddTaskData(string Description);
 
-    public record TaskItem(int Id, string Description, TaskStatus TaskStatus = TaskStatus.NotStarted)
-    {
-        public string Print()
-        {
-            return $"#{Id} with description: {Description}";
-        }
-    }
 
     public interface ITaskRepository
     {
@@ -40,7 +33,7 @@ namespace BusyList
         /// </summary>
         /// <param name="task"></param>
         /// <returns>The updated task.</returns>
-        TaskItem DeleteTask(TaskItem task);
+        void DeleteTask(TaskItem task);
 
         /// <summary>
         /// Gets all the tasks in the repository.
