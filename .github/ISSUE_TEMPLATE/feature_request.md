@@ -8,14 +8,19 @@ assignees: ''
 ---
 
 **Elevator pitch: Describe what the feature is**
-**Required** A clear and concise description of what the feature is.
-Ex: Add created/due by timestamps to tasks.
+
+**Required**. A clear and concise description of what the feature is.
+
+_Ex: Add created/due by timestamps to tasks._
 
 **Describe how this new feature adds value to the application**
-**Required** A clear and concise description of how this feature adds value to BusyList.
-Ex: Allows users to see the current age of a task, when it was created and when it is due by.
+
+**Required**. A clear and concise description of how this feature adds value to BusyList.
+
+_Ex: Allows users to see the current age of a task, when it was created and when it is due by._
 
 **Describe suggested implementation**
+
 Optional. A summary and to-the-point description of your suggested implementation.
 
 **Additional context**
