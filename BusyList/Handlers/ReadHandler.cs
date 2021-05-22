@@ -3,11 +3,26 @@ using System;
 
 namespace BusyList.Handlers
 {
-    internal class ReadHandler : IHandler<ReadCommand>
+    public class ReadHandler : IHandler<ReadCommand>
     {
+        private readonly ITaskRepository _taskRepository;
+
+        public ReadHandler(ITaskRepository taskRepository)
+        {
+            _taskRepository = taskRepository;
+        }
+
         public void Run(ReadCommand command)
         {
-            Console.WriteLine($"If the ReadHandler was implemented, I would now list details for Task {command.Id}.");
+            var task = _taskRepository.GetTaskById(command.Id);
+
+            if (task == null)
+            {
+                Console.WriteLine($"The task with the id {command.Id} does not exist");
+                return;
+            }
+
+            Console.WriteLine(task.Print());
         }
     }
 }

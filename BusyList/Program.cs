@@ -59,9 +59,12 @@ namespace BusyList
         {
             var services = new ServiceCollection();
 
-            services.AddTransient<IHandler<ReadCommand>, ReadHandler>();
+            services.AddSingleton<ITaskRepository, TaskRepository>();
+            services.AddTransient<IHandler<AddCommand>, AddHandler>();
             services.AddTransient<IHandler<DeleteCommand>, DeleteHandler>();
+            services.AddTransient<IHandler<DoneCommand>, DoneHandler>();
             services.AddTransient<IHandler<NextCommand>, NextHandler>();
+            services.AddTransient<IHandler<ReadCommand>, ReadHandler>();
 
             return services;
         }
@@ -70,17 +73,20 @@ namespace BusyList
         {
             switch (command)
             {
-                case ReadCommand read:
-                    provider.GetRequiredService<IHandler<ReadCommand>>().Run(read);
+                case AddCommand add:
+                    provider.GetRequiredService<IHandler<AddCommand>>().Run(add);
                     break;
                 case DeleteCommand delete:
                     provider.GetRequiredService<IHandler<DeleteCommand>>().Run(delete);
                     break;
+                case DoneCommand done:
+                    provider.GetRequiredService<IHandler<DoneCommand>>().Run(done);
+                    break;
                 case NextCommand next:
                     provider.GetRequiredService<IHandler<NextCommand>>().Run(next);
                     break;
-                case DoneCommand done:
-                    provider.GetRequiredService<IHandler<DoneCommand>>().Run(done);
+                case ReadCommand read:
+                    provider.GetRequiredService<IHandler<ReadCommand>>().Run(read);
                     break;
                 default:
                     throw new Exception($"Unknown command type {command.GetType().FullName} sent to HandleCommand!");
