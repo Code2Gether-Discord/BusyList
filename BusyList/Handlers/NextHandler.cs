@@ -29,5 +29,12 @@ namespace BusyList.Handlers
                 Console.WriteLine(SEPERATOR);
             }
         }
+
+        public void Help()
+        {
+            Console.WriteLine("Help: Next\n");
+            Console.WriteLine("Function: Lists all tasks with the id, description and status");
+            Console.WriteLine("Syntax: [id]");
+        }
     }
 }

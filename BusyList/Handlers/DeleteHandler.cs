@@ -11,7 +11,14 @@ namespace BusyList.Handlers
         {
             _taskRepository = taskRepository;
         }
-        
+
+        public void Help()
+        {
+            Console.WriteLine("Help: Delete\n");
+            Console.WriteLine("Function: delete a task");
+            Console.WriteLine("Syntax: [id] delete");
+        }
+
         public void Run(DeleteCommand command)
         {
             var selectedTask = _taskRepository.GetTaskById(command.Id);

@@ -12,6 +12,13 @@ namespace BusyList.Handlers
             _taskRepository = taskRepository;
         }
 
+        public void Help()
+        {
+            Console.WriteLine("Help: Done\n");
+            Console.WriteLine("Function: Mark a task as done");
+            Console.WriteLine("Syntax: [id] done");
+        }
+
         public void Run(DoneCommand command)
         {
             TaskItem taskItem = _taskRepository.GetTaskById(command.Id);

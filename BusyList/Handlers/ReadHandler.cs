@@ -12,6 +12,13 @@ namespace BusyList.Handlers
             _taskRepository = taskRepository;
         }
 
+        public void Help()
+        {
+            Console.WriteLine("Help: Read\n");
+            Console.WriteLine("Function: Give a task by id with the id, the description and the status");
+            Console.WriteLine("Syntax: [id]");
+        }
+
         public void Run(ReadCommand command)
         {
             var task = _taskRepository.GetTaskById(command.Id);
