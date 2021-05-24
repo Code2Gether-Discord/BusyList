@@ -22,7 +22,7 @@ namespace BusyList.Handlers
                 return;
             }
 
-            taskItem.TaskStatus = TaskStatus.Done;
+            taskItem.Status = TaskStatus.Done;
 
             _taskRepository.UpdateTask(taskItem);
 

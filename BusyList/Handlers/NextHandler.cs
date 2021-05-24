@@ -25,7 +25,7 @@ namespace BusyList.Handlers
             {
                 Console.WriteLine($"Task id: {item.Id}");
                 Console.WriteLine($"Description: {item.Description}");
-                Console.WriteLine($"Status: {item.TaskStatus}");
+                Console.WriteLine($"Status: {item.Status}");
                 Console.WriteLine(SEPERATOR);
             }
         }

@@ -57,9 +57,9 @@ namespace BusyList.Parsing
             from _ in Parse.WhiteSpace
             from keyword in _keywordEdit
             from __ in Parse.WhiteSpace
-            from property in Parse.AnyChar.AtLeastOnce().Text()
+            from property in Parse.LetterOrDigit.AtLeastOnce().Text()
             from ___ in Parse.WhiteSpace
-            from value in Parse.AnyChar.AtLeastOnce().Text()
+            from value in Parse.LetterOrDigit.AtLeastOnce().Text()
             select new EditCommand(id, property, value);
 
         public static readonly Parser<Command> Source =

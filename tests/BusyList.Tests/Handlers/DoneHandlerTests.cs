@@ -25,7 +25,7 @@ namespace BusyList.Tests.Handlers
             _taskRepository.Setup(_ => _.GetTaskById(command.Id)).Returns(currentTask);
 
             _taskRepository.Setup(_ => _.UpdateTask(It.IsAny<TaskItem>())).Callback<TaskItem>(task =>
-                task.TaskStatus.Should().Be(TaskStatus.Done)
+                task.Status.Should().Be(TaskStatus.Done)
             );
 
             _subject.Run(command);

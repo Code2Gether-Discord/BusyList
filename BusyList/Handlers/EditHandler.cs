@@ -1,4 +1,5 @@
 ﻿using BusyList.Commands;
+using System;
 using System.Reflection;
 
 namespace BusyList.Handlers
@@ -16,11 +17,19 @@ namespace BusyList.Handlers
         {
             TaskItem taskItem = _taskRepository.GetTaskById(command.Id);
 
-            PropertyInfo propertyInfo = taskItem.GetType().GetProperty(command.property);
+            if (taskItem != null)
+            {
+                PropertyInfo propertyInfo = taskItem.GetType().GetProperty(command.property);
 
-            propertyInfo.SetValue(taskItem, command.value);
+                if (propertyInfo != null)
+                {
+                    propertyInfo.SetValue(taskItem, command.value);
 
-            _taskRepository.UpdateTask(taskItem);
+                    _taskRepository.UpdateTask(taskItem);
+
+                    Console.WriteLine("Task updated");
+                }
+            }
         }
     }
 }

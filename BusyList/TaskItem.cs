@@ -8,13 +8,13 @@ namespace BusyList
         {
             Id = id;
             Description = description;
-            TaskStatus = status;
+            Status = status;
         }
         public int Id { get; }
 
-        public string Description { get; }
+        public string Description { get; set; }
 
-        public TaskStatus TaskStatus { get; set; }
+        public TaskStatus Status { get; set; }
 
         public string Print()
         {
@@ -22,7 +22,7 @@ namespace BusyList
 
             sb.AppendLine($"Id {Id}");
             sb.AppendLine($"Description {Description}");
-            sb.AppendLine($"Status {TaskStatus}");
+            sb.AppendLine($"Status {Status}");
 
             return sb.ToString();
         }
