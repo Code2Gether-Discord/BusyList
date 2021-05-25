@@ -15,13 +15,6 @@ namespace BusyList.Handlers
             _taskRepository = taskRepository;
         }
 
-        public void Help()
-        {
-            Console.WriteLine("Help: Add\n");
-            Console.WriteLine("Function: Create a new task with the given description");
-            Console.WriteLine("Syntax: add [id]");
-        }
-
         public void Run(AddCommand command)
         {
             var item = new AddTaskData(command.Description);

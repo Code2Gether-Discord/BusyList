@@ -53,10 +53,6 @@ namespace BusyList.Parsing
             from keyword in _keywordDone
             select new DoneCommand(id);
 
-        private static readonly Parser<Command> _overviewHelpCommand =
-            from keyword in _keywordHelp
-            select new HelpCommand(null);
-
         private static readonly Parser<Command> _helpCommand =
            from keyword in _keywordHelp
            select new HelpCommand();
