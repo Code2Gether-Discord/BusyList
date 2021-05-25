@@ -1,8 +1,10 @@
 ﻿using BusyList.Commands;
+using BusyList.HelpSystem;
 using System;
 
 namespace BusyList.Handlers
 {
+    [HelpAttribute("read", "Print the id, description and status of the task with the passed id", "[Id]")]
     public class ReadHandler : IHandler<ReadCommand>
     {
         private readonly ITaskRepository _taskRepository;
@@ -10,13 +12,6 @@ namespace BusyList.Handlers
         public ReadHandler(ITaskRepository taskRepository)
         {
             _taskRepository = taskRepository;
-        }
-
-        public void Help()
-        {
-            Console.WriteLine("Help: Read\n");
-            Console.WriteLine("Function: Give a task by id with the id, the description and the status");
-            Console.WriteLine("Syntax: [id]");
         }
 
         public void Run(ReadCommand command)

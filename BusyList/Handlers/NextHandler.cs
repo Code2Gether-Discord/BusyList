@@ -1,8 +1,11 @@
 ﻿using BusyList.Commands;
+using BusyList.HelpSystem;
 using System;
 
 namespace BusyList.Handlers
 {
+
+    [HelpAttribute("next", "Lists all tasks", "next")] 
     public class NextHandler : IHandler<NextCommand>
     {
         private readonly ITaskRepository _taskRepository;
@@ -28,13 +31,6 @@ namespace BusyList.Handlers
                 Console.WriteLine($"Status: {item.TaskStatus}");
                 Console.WriteLine(SEPERATOR);
             }
-        }
-
-        public void Help()
-        {
-            Console.WriteLine("Help: Next\n");
-            Console.WriteLine("Function: Lists all tasks with the id, description and status");
-            Console.WriteLine("Syntax: [id]");
         }
     }
 }

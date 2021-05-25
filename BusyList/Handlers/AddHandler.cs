@@ -5,7 +5,7 @@ using System;
 
 namespace BusyList.Handlers
 {
-    [HelpAttribute("add", "placeholder", "syntac placeholder")]
+    [HelpAttribute("add", "Add a new task with the passed description", "add [Description]")]
     public class AddHandler : IHandler<AddCommand>
     {
         private readonly ITaskRepository _taskRepository;

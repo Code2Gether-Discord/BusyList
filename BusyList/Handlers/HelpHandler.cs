@@ -36,9 +36,13 @@ namespace BusyList.Handlers
 
             if (description != null && syntax != null)
             {
-                Console.WriteLine(command.name);
-                Console.WriteLine(description);
-                Console.WriteLine(syntax);
+                Console.WriteLine($"Command: {command.name}");
+                Console.WriteLine($"Description: {description}");
+                Console.WriteLine($"Syntax: {syntax}");
+            }
+            else
+            {
+                Console.WriteLine($"Help for the command '{command.name}' does not exists");
             }
         }
     }
