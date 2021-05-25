@@ -29,6 +29,14 @@ namespace BusyList.Handlers
 
                     Console.WriteLine("Task updated");
                 }
+                else
+                {
+                    Console.WriteLine($"The property with the name {command.property} does not exist");
+                }
+            }
+            else 
+            {
+                Console.WriteLine($"The task with the id {command.Id} does not exist");
             }
         }
     }
