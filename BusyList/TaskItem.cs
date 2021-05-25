@@ -25,7 +25,10 @@ namespace BusyList
 
             sb.AppendLine($"Id {Id}");
             sb.AppendLine($"Description {Description}");
-            sb.AppendLine($"Priority {Priority}");
+            if (!string.IsNullOrEmpty(Priority))
+            {
+                sb.AppendLine($"Priority {Priority}");
+            }
             sb.AppendLine($"Status {TaskStatus}");
 
             return sb.ToString();

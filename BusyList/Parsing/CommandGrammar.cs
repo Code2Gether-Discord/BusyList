@@ -43,6 +43,12 @@ namespace BusyList.Parsing
         private static readonly Parser<Command> _addCommand =
             from keyword in _keywordAdd
             from _ in Parse.WhiteSpace
+            from description in Parse.AnyChar.AtLeastOnce().Text()
+            select new AddCommand(description, "");
+        
+        private static readonly Parser<Command> _addCommandWithPriority =
+            from keyword in _keywordAdd
+            from _ in Parse.WhiteSpace
             from pFlag in Parse.Char('p').Once()
             from colon in Parse.Char(':').Once()
             from priority in _priority
@@ -67,6 +73,7 @@ namespace BusyList.Parsing
             .Or(_nextCommand)
             .Or(_doneCommand)
             .Or(_readCommand)
+            .Or(_addCommandWithPriority)
             .Or(_addCommand)
             .End();
     }
