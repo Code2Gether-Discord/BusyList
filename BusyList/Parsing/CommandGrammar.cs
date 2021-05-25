@@ -23,6 +23,15 @@ namespace BusyList.Parsing
         private static readonly Parser<int> _number =
             Parse.Number.Select(s => int.Parse(s));
 
+        private static readonly Parser<string> _priority =
+            Parse.IgnoreCase("Low")
+            .Or(Parse.IgnoreCase("Medium"))
+            .Or(Parse.IgnoreCase("High"))
+            .Or(Parse.IgnoreCase("L"))
+            .Or(Parse.IgnoreCase("M"))
+            .Or(Parse.IgnoreCase("H"))
+            .Text();
+        
         private static readonly Parser<Command> _readCommand =
             from id in _number
             select new ReadCommand(id);
@@ -34,8 +43,12 @@ namespace BusyList.Parsing
         private static readonly Parser<Command> _addCommand =
             from keyword in _keywordAdd
             from _ in Parse.WhiteSpace
+            from pFlag in Parse.Char('p').Once()
+            from colon in Parse.Char(':').Once()
+            from priority in _priority
+            from __ in Parse.WhiteSpace 
             from description in Parse.AnyChar.AtLeastOnce().Text()
-            select new AddCommand(description);
+            select new AddCommand(description, priority);
 
         private static readonly Parser<Command> _deleteCommand =
             from id in _number
