@@ -21,6 +21,8 @@ namespace BusyList.Handlers
             {
                 Console.WriteLine($"{helpText.Item1}: {helpText.Item2}");
             }
+
+            Console.WriteLine("For further information type help [keyword] e.g help add");
         }
 
         public void Run(HelpCommand command)
