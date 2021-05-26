@@ -17,9 +17,9 @@ namespace BusyList.Handlers
         {
             var helpTexts = _helpProvider.GetAllHelpText();
 
-            foreach (var helpText in helpTexts)
+            foreach (var (name, description) in helpTexts)
             {
-                Console.WriteLine($"{helpText.Item1}: {helpText.Item2}");
+                Console.WriteLine($"{name}: {description}");
             }
 
             Console.WriteLine("For further information type help [keyword] e.g help add");
