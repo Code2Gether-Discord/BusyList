@@ -15,12 +15,12 @@ namespace BusyList.Handlers
 
         public void Help()
         {
-            Console.WriteLine("Commands:\n");
-            Console.WriteLine("done - mark a task as done");
-            Console.WriteLine("delete - delete a task");
-            Console.WriteLine("next - list all tasks");
-            Console.WriteLine("read - print the id, description and status of a task\n");
-            Console.WriteLine("For more details do: help [keyword] e.g help done");
+            var helpTexts = _helpProvider.GetAllHelpText();
+
+            foreach (var helpText in helpTexts)
+            {
+                Console.WriteLine($"{helpText.Item1}: {helpText.Item2}");
+            }
         }
 
         public void Run(HelpCommand command)
