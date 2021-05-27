@@ -16,11 +16,11 @@ namespace BusyList.HelpSystem
                 .ToDictionary(x => x.Name.ToLowerInvariant(), x => (x.Description, x.Syntax));
         }
 
-        public (string, string)[] GetAllHelpText() => _helpText.Select(x => (x.Key, x.Value.Item1)).ToArray();
+        public (string, string)[] GetAllHelpText() => _helpText.Select(x => (x.Key.ToLowerInvariant(), x.Value.Item1)).ToArray();
 
         public (string, string) GetHelpText(string key)
         {
-            if(_helpText.TryGetValue(key, out var value))
+            if(_helpText.TryGetValue(key.ToLowerInvariant(), out var value))
             {
                 return value;
             }

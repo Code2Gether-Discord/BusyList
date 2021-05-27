@@ -38,13 +38,13 @@ namespace BusyList.Handlers
 
             if (description != null && syntax != null)
             {
-                Console.WriteLine($"Command: {command.name}");
+                Console.WriteLine($"Command: {command.name.ToLowerInvariant()}");
                 Console.WriteLine($"Description: {description}");
                 Console.WriteLine($"Syntax: {syntax}");
             }
             else
             {
-                Console.WriteLine($"Help for the command '{command.name}' does not exists");
+                Console.WriteLine($"Help for the command '{command.name.ToLowerInvariant()}' does not exists");
             }
         }
     }
