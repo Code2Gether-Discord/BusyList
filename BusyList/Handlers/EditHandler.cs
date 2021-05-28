@@ -4,6 +4,8 @@ using System.Reflection;
 
 namespace BusyList.Handlers
 {
+    // There are some problems. 
+    // Only work for string properties e.g description.
     public class EditHandler : IHandler<EditCommand>
     {
         private readonly ITaskRepository _taskRepository;
