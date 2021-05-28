@@ -23,13 +23,7 @@ namespace BusyList.Handlers
 
             foreach (var item in tasks)
             {
-                Console.WriteLine($"Task id: {item.Id}");
-                Console.WriteLine($"Description: {item.Description}");
-                if (!string.IsNullOrWhiteSpace(item.Priority))
-                {
-                    Console.WriteLine($"Priority: {item.Priority}");
-                }
-                Console.WriteLine($"Status: {item.TaskStatus}");
+                Console.WriteLine(item.Print());
                 Console.WriteLine(SEPERATOR);
             }
         }

@@ -1,4 +1,5 @@
 ﻿using BusyList.Commands;
+using static BusyList.PrioritySelect;
 using Sprache;
 using System.Linq;
 
@@ -44,7 +45,7 @@ namespace BusyList.Parsing
             from keyword in _keywordAdd
             from _ in Parse.WhiteSpace
             from description in Parse.AnyChar.AtLeastOnce().Text()
-            select new AddCommand(description, "");
+            select new AddCommand(description);
         
         private static readonly Parser<Command> _addCommandWithPriority =
             from keyword in _keywordAdd
@@ -54,7 +55,7 @@ namespace BusyList.Parsing
             from priority in _priority
             from __ in Parse.WhiteSpace 
             from description in Parse.AnyChar.AtLeastOnce().Text()
-            select new AddCommand(description, priority);
+            select new AddCommand(description, SelectPriority(priority));
 
         private static readonly Parser<Command> _deleteCommand =
             from id in _number

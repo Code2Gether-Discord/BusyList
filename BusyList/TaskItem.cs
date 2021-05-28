@@ -4,7 +4,7 @@ namespace BusyList
 {
     public class TaskItem
     {
-        public TaskItem(int id, string description, string priority, TaskStatus status = TaskStatus.NotStarted)
+        public TaskItem(int id, string description, PriorityEnum? priority = null, TaskStatus status = TaskStatus.NotStarted)
         {
             Id = id;
             Description = description;
@@ -17,7 +17,7 @@ namespace BusyList
 
         public TaskStatus TaskStatus { get; set; }
         
-        public string Priority { get; set; }
+        public PriorityEnum? Priority { get; set; }
 
         public string Print()
         {
@@ -25,7 +25,7 @@ namespace BusyList
 
             sb.AppendLine($"Id {Id}");
             sb.AppendLine($"Description {Description}");
-            if (!string.IsNullOrEmpty(Priority))
+            if (Priority is not null)
             {
                 sb.AppendLine($"Priority {Priority}");
             }

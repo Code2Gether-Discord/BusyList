@@ -9,7 +9,7 @@ namespace BusyList
         Done
     }
 
-    public record AddTaskData(string Description, string Priority);
+    public record AddTaskData(string Description, PriorityEnum? Priority);
 
 
     public interface ITaskRepository
