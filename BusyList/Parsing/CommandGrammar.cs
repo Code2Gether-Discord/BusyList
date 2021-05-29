@@ -1,7 +1,5 @@
 ﻿using BusyList.Commands;
-using static BusyList.PrioritySelect;
 using Sprache;
-using System.Linq;
 
 namespace BusyList.Parsing
 {
@@ -23,16 +21,27 @@ namespace BusyList.Parsing
 
         private static readonly Parser<int> _number =
             Parse.Number.Select(s => int.Parse(s));
-
-        private static readonly Parser<string> _priority =
-            Parse.IgnoreCase("Low")
-            .Or(Parse.IgnoreCase("Medium"))
-            .Or(Parse.IgnoreCase("High"))
-            .Or(Parse.IgnoreCase("L"))
-            .Or(Parse.IgnoreCase("M"))
-            .Or(Parse.IgnoreCase("H"))
-            .Text();
         
+        private static readonly Parser<PriorityEnum> _lowPriority =
+            Parse.IgnoreCase("Low")
+            .Or(Parse.IgnoreCase("L"))
+            .Return(PriorityEnum.Low);  
+        
+        private static readonly Parser<PriorityEnum> _mediumPriority =
+            Parse.IgnoreCase("Medium")
+            .Or(Parse.IgnoreCase("M"))
+            .Return(PriorityEnum.Medium);
+        
+        private static readonly Parser<PriorityEnum> _highPriority =
+            Parse.IgnoreCase("High")
+            .Or(Parse.IgnoreCase("H"))
+            .Return(PriorityEnum.High);
+
+        private static readonly Parser<PriorityEnum> _priority =
+            _lowPriority
+            .Or(_mediumPriority)
+            .Or(_highPriority);
+
         private static readonly Parser<Command> _readCommand =
             from id in _number
             select new ReadCommand(id);
@@ -55,7 +64,7 @@ namespace BusyList.Parsing
             from priority in _priority
             from __ in Parse.WhiteSpace 
             from description in Parse.AnyChar.AtLeastOnce().Text()
-            select new AddCommand(description, SelectPriority(priority));
+            select new AddCommand(description, priority);
 
         private static readonly Parser<Command> _deleteCommand =
             from id in _number
