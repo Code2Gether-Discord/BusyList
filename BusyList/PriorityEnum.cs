@@ -3,7 +3,7 @@
     public enum PriorityEnum
     {
         Low,
-        Medium,
+        Normal,
         High
     }
 }

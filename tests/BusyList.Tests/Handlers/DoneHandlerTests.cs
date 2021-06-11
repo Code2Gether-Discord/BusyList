@@ -20,7 +20,7 @@ namespace BusyList.Tests.Handlers
         public void Run_ShouldSetTaskStatusToDone_WhenAValidIdIsPassed()
         {
             var command = new DoneCommand(Id: 1);
-            var currentTask = new TaskItem(command.Id, "DESC",null, TaskStatus.NotStarted);
+            var currentTask = new TaskItem(command.Id, "DESC",PriorityEnum.High, TaskStatus.NotStarted);
 
             _taskRepository.Setup(_ => _.GetTaskById(command.Id)).Returns(currentTask);
 

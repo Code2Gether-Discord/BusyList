@@ -20,7 +20,7 @@ namespace BusyList.Tests.Handlers
         {
             var command = new ReadCommand(1);
 
-            var task = new TaskItem(command.Id, "Test Description", PriorityEnum.Medium);
+            var task = new TaskItem(command.Id, "Test Description", PriorityEnum.High);
 
             _mockRepository.Setup(_ => _.GetTaskById(command.Id)).Returns(task);
 

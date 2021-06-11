@@ -27,10 +27,10 @@ namespace BusyList.Parsing
             .Or(Parse.IgnoreCase("L"))
             .Return(PriorityEnum.Low);  
         
-        private static readonly Parser<PriorityEnum> _mediumPriority =
-            Parse.IgnoreCase("Medium")
-            .Or(Parse.IgnoreCase("M"))
-            .Return(PriorityEnum.Medium);
+        private static readonly Parser<PriorityEnum> _normalPriority =
+            Parse.IgnoreCase("Normal")
+            .Or(Parse.IgnoreCase("N"))
+            .Return(PriorityEnum.Normal);
         
         private static readonly Parser<PriorityEnum> _highPriority =
             Parse.IgnoreCase("High")
@@ -39,7 +39,7 @@ namespace BusyList.Parsing
 
         private static readonly Parser<PriorityEnum> _priority =
             _lowPriority
-            .Or(_mediumPriority)
+            .Or(_normalPriority)
             .Or(_highPriority);
 
         private static readonly Parser<Command> _readCommand =
