@@ -14,7 +14,7 @@ namespace BusyList.Handlers
         }
         public void Run(AddCommand command)
         {
-            var item = new AddTaskData(command.Description);
+            var item = new AddTaskData(command.Description, command.Priority);
 
             var currentTask = _taskRepository.AddTask(item);
 
