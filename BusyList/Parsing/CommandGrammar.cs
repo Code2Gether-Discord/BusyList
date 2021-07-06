@@ -1,6 +1,5 @@
 ﻿using BusyList.Commands;
 using Sprache;
-using System.Linq;
 
 namespace BusyList.Parsing
 {
@@ -25,6 +24,26 @@ namespace BusyList.Parsing
 
         private static readonly Parser<int> _number =
             Parse.Number.Select(s => int.Parse(s));
+        
+        private static readonly Parser<PriorityEnum> _lowPriority =
+            Parse.IgnoreCase("Low")
+            .Or(Parse.IgnoreCase("L"))
+            .Return(PriorityEnum.Low);  
+        
+        private static readonly Parser<PriorityEnum> _normalPriority =
+            Parse.IgnoreCase("Normal")
+            .Or(Parse.IgnoreCase("N"))
+            .Return(PriorityEnum.Normal);
+        
+        private static readonly Parser<PriorityEnum> _highPriority =
+            Parse.IgnoreCase("High")
+            .Or(Parse.IgnoreCase("H"))
+            .Return(PriorityEnum.High);
+
+        private static readonly Parser<PriorityEnum> _priority =
+            _lowPriority
+            .Or(_normalPriority)
+            .Or(_highPriority);
 
         private static readonly Parser<Command> _readCommand =
             from id in _number
@@ -39,6 +58,16 @@ namespace BusyList.Parsing
             from _ in Parse.WhiteSpace
             from description in Parse.AnyChar.AtLeastOnce().Text()
             select new AddCommand(description);
+        
+        private static readonly Parser<Command> _addCommandWithPriority =
+            from keyword in _keywordAdd
+            from _ in Parse.WhiteSpace
+            from pFlag in Parse.Char('p').Once()
+            from colon in Parse.Char(':').Once()
+            from priority in _priority
+            from __ in Parse.WhiteSpace 
+            from description in Parse.AnyChar.AtLeastOnce().Text()
+            select new AddCommand(description, priority);
 
         private static readonly Parser<Command> _deleteCommand =
             from id in _number
@@ -68,6 +97,7 @@ namespace BusyList.Parsing
             .Or(_doneCommand)
             .Or(_editCommand)
             .Or(_readCommand)
+            .Or(_addCommandWithPriority)
             .Or(_addCommand)
             .End();
     }

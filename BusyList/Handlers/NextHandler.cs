@@ -23,9 +23,7 @@ namespace BusyList.Handlers
 
             foreach (var item in tasks)
             {
-                Console.WriteLine($"Task id: {item.Id}");
-                Console.WriteLine($"Description: {item.Description}");
-                Console.WriteLine($"Status: {item.Status}");
+                Console.WriteLine(item.Print());
                 Console.WriteLine(SEPERATOR);
             }
         }

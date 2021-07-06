@@ -4,17 +4,18 @@ namespace BusyList
 {
     public class TaskItem
     {
-        public TaskItem(int id, string description, TaskStatus status = TaskStatus.NotStarted)
+        public TaskItem(int id, string description, PriorityEnum priority = PriorityEnum.Normal, TaskStatus status = TaskStatus.NotStarted)
         {
             Id = id;
             Description = description;
-            Status = status;
+            TaskStatus = status;
+            Priority = priority;
         }
         public int Id { get; }
 
         public string Description { get; set; }
-
-        public TaskStatus Status { get; set; }
+        public TaskStatus TaskStatus { get; set; }
+        public PriorityEnum Priority { get; set; }
 
         public string Print()
         {
@@ -22,7 +23,8 @@ namespace BusyList
 
             sb.AppendLine($"Id {Id}");
             sb.AppendLine($"Description {Description}");
-            sb.AppendLine($"Status {Status}");
+            sb.AppendLine($"Priority {Priority}");
+            sb.AppendLine($"Status {TaskStatus}");
 
             return sb.ToString();
         }
