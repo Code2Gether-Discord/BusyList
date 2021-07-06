@@ -7,5 +7,5 @@
     public record AddCommand(string Description) : Command;
     public record DeleteCommand(int Id) : Command;
     public record DoneCommand(int Id) : Command;
-    public record EditCommand(int Id, string property, string value) : Command;
+    public record EditCommand(int Id, string Property, string Value) : Command;
 }

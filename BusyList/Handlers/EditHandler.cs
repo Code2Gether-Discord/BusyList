@@ -21,11 +21,16 @@ namespace BusyList.Handlers
 
             if (taskItem != null)
             {
-                PropertyInfo propertyInfo = taskItem.GetType().GetProperty(command.property);
+                PropertyInfo propertyInfo = taskItem.GetType().GetProperty(command.Property);
+
+                if(propertyInfo == null)
+                {
+                    propertyInfo = taskItem.GetType().GetProperty(command.Property.ToUpperInvariant());
+                }
 
                 if (propertyInfo != null)
                 {
-                    propertyInfo.SetValue(taskItem, command.value);
+                    propertyInfo.SetValue(taskItem, command.Value);
 
                     _taskRepository.UpdateTask(taskItem);
 
@@ -33,7 +38,7 @@ namespace BusyList.Handlers
                 }
                 else
                 {
-                    Console.WriteLine($"The property with the name {command.property} does not exist");
+                    Console.WriteLine($"The property with the name {command.Property} does not exist");
                 }
             }
             else 
