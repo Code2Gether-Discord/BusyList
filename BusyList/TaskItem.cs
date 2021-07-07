@@ -14,7 +14,7 @@ namespace BusyList
         public int Id { get; }
 
         public string Description { get; set; }
-        public TaskStatus TaskStatus { get; set; }
+        public TaskStatus Status { get; set; }
         public PriorityEnum Priority { get; set; }
 
         public string Print()
