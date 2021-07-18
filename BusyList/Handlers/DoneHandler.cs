@@ -1,8 +1,10 @@
 ﻿using BusyList.Commands;
+using BusyList.HelpSystem;
 using System;
 
 namespace BusyList.Handlers
 {
+    [HelpAttribute("done", "Mark the task with the given id as done", "[Id] done")]
     public class DoneHandler : IHandler<DoneCommand>
     {
         private readonly ITaskRepository _taskRepository;

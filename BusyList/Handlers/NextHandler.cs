@@ -1,8 +1,11 @@
 ﻿using BusyList.Commands;
+using BusyList.HelpSystem;
 using System;
 
 namespace BusyList.Handlers
 {
+
+    [HelpAttribute("next", "Lists all tasks", "next")] 
     public class NextHandler : IHandler<NextCommand>
     {
         private readonly ITaskRepository _taskRepository;

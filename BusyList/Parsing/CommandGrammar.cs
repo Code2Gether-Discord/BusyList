@@ -1,5 +1,8 @@
-﻿using BusyList.Commands;
+using BusyList.Commands;
 using Sprache;
+using System;
+using System.Linq;
+
 
 namespace BusyList.Parsing
 {
@@ -7,6 +10,9 @@ namespace BusyList.Parsing
     {
         private static readonly Parser<string> _keywordAdd =
             Parse.IgnoreCase("add").Text();
+
+        private static readonly Parser<string> _keywordHelp =
+            Parse.IgnoreCase("help").Text();
 
         private static readonly Parser<string> _keywordDelete =
             Parse.IgnoreCase("delete")
@@ -78,6 +84,16 @@ namespace BusyList.Parsing
             from keyword in _keywordDone
             select new DoneCommand(id);
 
+        private static readonly Parser<Command> _helpCommand =
+           from keyword in _keywordHelp
+           select new HelpCommand();
+
+        private static readonly Parser<Command> _helpCommandSpecific =
+            from keyword in _keywordHelp
+            from _ in Parse.WhiteSpace
+            from name in Parse.AnyChar.AtLeastOnce().Text()
+            select new HelpCommand(name);
+
         public static readonly Parser<Command> Source =
             _deleteCommand
             .Or(_nextCommand)
@@ -85,6 +101,8 @@ namespace BusyList.Parsing
             .Or(_readCommand)
             .Or(_addCommandWithPriority)
             .Or(_addCommand)
+            .Or(_helpCommandSpecific)
+            .Or(_helpCommand)
             .End();
     }
 }

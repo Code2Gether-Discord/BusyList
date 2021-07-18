@@ -1,9 +1,11 @@
 ﻿using BusyList.Commands;
 using BusyList.Handlers;
+using BusyList.HelpSystem;
 using BusyList.Parsing;
 using Microsoft.Extensions.DependencyInjection;
 using Sprache;
 using System;
+using System.Reflection;
 
 namespace BusyList
 {
@@ -65,6 +67,8 @@ namespace BusyList
             services.AddTransient<IHandler<DoneCommand>, DoneHandler>();
             services.AddTransient<IHandler<NextCommand>, NextHandler>();
             services.AddTransient<IHandler<ReadCommand>, ReadHandler>();
+            services.AddTransient<IHandler<HelpCommand>, HelpHandler>();
+            services.AddSingleton<HelpProvider>();
 
             return services;
         }
@@ -87,6 +91,9 @@ namespace BusyList
                     break;
                 case ReadCommand read:
                     provider.GetRequiredService<IHandler<ReadCommand>>().Run(read);
+                    break;
+                case HelpCommand help:
+                    provider.GetRequiredService<IHandler<HelpCommand>>().Run(help);
                     break;
                 default:
                     throw new Exception($"Unknown command type {command.GetType().FullName} sent to HandleCommand!");
