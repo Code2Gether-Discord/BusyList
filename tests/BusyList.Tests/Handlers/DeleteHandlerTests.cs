@@ -20,7 +20,7 @@ namespace BusyList.Tests.Handlers
         public void Run_ShouldCallDeleteTask_WhenAValidIdIsPassed()
         {
             var command = new DeleteCommand(Id: 1);
-            var currentTask = new TaskItem(command.Id, "DESC", TaskStatus.NotStarted);
+            var currentTask = new TaskItem(command.Id, "DESC", PriorityEnum.High , TaskStatus.NotStarted);
 
             _taskRepository.Setup(_ => _.GetTaskById(command.Id)).Returns(currentTask);
 

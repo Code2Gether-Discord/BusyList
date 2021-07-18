@@ -26,7 +26,7 @@ namespace BusyList
         }
         public TaskItem AddTask(AddTaskData data)
         {
-            var item = new TaskItem(_idCounter++, data.Description);
+            var item = new TaskItem(_idCounter++, data.Description, data.Priority);
 
             _items.Add(item);
 
