@@ -8,6 +8,9 @@ namespace BusyList.Parsing
         private static readonly Parser<string> _keywordAdd =
             Parse.IgnoreCase("add").Text();
 
+        private static readonly Parser<string> _keywordEdit =
+            Parse.IgnoreCase("edit").Text();
+
         private static readonly Parser<string> _keywordDelete =
             Parse.IgnoreCase("delete")
             .Or(Parse.IgnoreCase("del"))
@@ -78,10 +81,21 @@ namespace BusyList.Parsing
             from keyword in _keywordDone
             select new DoneCommand(id);
 
+        private static readonly Parser<Command> _editCommand =
+            from id in _number
+            from _ in Parse.WhiteSpace
+            from keyword in _keywordEdit
+            from __ in Parse.WhiteSpace
+            from property in Parse.LetterOrDigit.AtLeastOnce().Text()
+            from ___ in Parse.WhiteSpace
+            from value in Parse.LetterOrDigit.AtLeastOnce().Text()
+            select new EditCommand(id, property, value);
+
         public static readonly Parser<Command> Source =
             _deleteCommand
             .Or(_nextCommand)
             .Or(_doneCommand)
+            .Or(_editCommand)
             .Or(_readCommand)
             .Or(_addCommandWithPriority)
             .Or(_addCommand)

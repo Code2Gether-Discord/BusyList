@@ -7,4 +7,5 @@
     public record AddCommand(string Description, PriorityEnum Priority = PriorityEnum.Normal) : Command;
     public record DeleteCommand(int Id) : Command;
     public record DoneCommand(int Id) : Command;
+    public record EditCommand(int Id, string Property, string Value) : Command;
 }

@@ -16,7 +16,13 @@ namespace BusyList.Handlers
         {
             TaskItem taskItem = _taskRepository.GetTaskById(command.Id);
 
-            taskItem.TaskStatus = TaskStatus.Done;
+            if(taskItem == null)
+            {
+                Console.WriteLine($"The task with the id {command.Id} does not exist");
+                return;
+            }
+
+            taskItem.Status = TaskStatus.Done;
 
             _taskRepository.UpdateTask(taskItem);
 

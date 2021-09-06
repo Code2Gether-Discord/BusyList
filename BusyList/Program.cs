@@ -65,6 +65,7 @@ namespace BusyList
             services.AddTransient<IHandler<DoneCommand>, DoneHandler>();
             services.AddTransient<IHandler<NextCommand>, NextHandler>();
             services.AddTransient<IHandler<ReadCommand>, ReadHandler>();
+            services.AddTransient<IHandler<EditCommand>, EditHandler>();
 
             return services;
         }
@@ -87,6 +88,9 @@ namespace BusyList
                     break;
                 case ReadCommand read:
                     provider.GetRequiredService<IHandler<ReadCommand>>().Run(read);
+                    break;
+                case EditCommand edit:
+                    provider.GetRequiredService<IHandler<EditCommand>>().Run(edit);
                     break;
                 default:
                     throw new Exception($"Unknown command type {command.GetType().FullName} sent to HandleCommand!");

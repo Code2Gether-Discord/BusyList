@@ -8,15 +8,13 @@ namespace BusyList
         {
             Id = id;
             Description = description;
-            TaskStatus = status;
+            Status = status;
             Priority = priority;
         }
         public int Id { get; }
 
-        public string Description { get; }
-
-        public TaskStatus TaskStatus { get; set; }
-        
+        public string Description { get; set; }
+        public TaskStatus Status { get; set; }
         public PriorityEnum Priority { get; set; }
 
         public string Print()
@@ -26,7 +24,7 @@ namespace BusyList
             sb.AppendLine($"Id {Id}");
             sb.AppendLine($"Description {Description}");
             sb.AppendLine($"Priority {Priority}");
-            sb.AppendLine($"Status {TaskStatus}");
+            sb.AppendLine($"Status {Status}");
 
             return sb.ToString();
         }
